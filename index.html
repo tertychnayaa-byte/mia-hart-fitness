@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f7eee5">
+  <meta name="description" content="Mia Hart — твой AI-фитнес-тренер. Начни с двух бесплатных тренировок: растяжка и ягодицы.">
+  <title>Mia Hart — твой AI-фитнес-тренер</title>
+  <style>
+    :root{
+      --cream:#fbf4ec; --paper:#fffaf5; --ink:#39231b; --muted:#826b60;
+      --brown:#573326; --brown2:#754637; --rose:#d88d78; --rose-light:#f2c6b4;
+      --line:#ead9cc; --shadow:0 12px 34px rgba(78,45,31,.09); --radius:24px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:84px}
+    body{margin:0;background:var(--cream);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.5}
+    img{display:block;max-width:100%}
+    button,a{font:inherit}
+    button{cursor:pointer}
+    a{color:inherit;text-decoration:none}
+    .wrap{width:min(1120px,100% - 36px);margin-inline:auto}
+    .header{position:sticky;top:0;z-index:20;background:rgba(251,244,236,.91);backdrop-filter:blur(14px);border-bottom:1px solid rgba(234,217,204,.75)}
+    .nav{min-height:74px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.13em;font-size:17px;line-height:1.05}
+    .brand-mark{display:grid;place-items:center;width:38px;height:38px;border-radius:14px;background:var(--brown);color:#fff1e6;font-size:19px}
+    .brand small{display:block;font-size:9px;letter-spacing:.19em;font-weight:700;color:var(--muted);margin-top:5px}
+    .navlinks{display:flex;align-items:center;gap:26px;color:#765e52;font-size:13px;font-weight:650}
+    .nav-actions{display:flex;align-items:center;gap:10px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:0;border-radius:999px;padding:14px 21px;font-weight:800;line-height:1.2;transition:transform .18s,box-shadow .18s,filter .18s}
+    .btn:hover{transform:translateY(-2px);filter:saturate(1.05)}
+    .btn-primary{background:linear-gradient(135deg,#e8a18b,#c97961);color:#fff;box-shadow:0 8px 20px rgba(177,99,74,.2)}
+    .btn-dark{background:var(--brown);color:#fff7f0}
+    .btn-outline{background:transparent;border:1px solid #c9a997;color:var(--brown);padding:11px 16px}
+    .menu-btn{display:none;border:1px solid var(--line);background:var(--paper);border-radius:12px;width:42px;height:42px;color:var(--brown);font-size:21px}
+    .hero{padding:32px 0 24px}
+    .hero-card{position:relative;min-height:570px;border-radius:32px;overflow:hidden;background:#e9d0bc;isolation:isolate;box-shadow:var(--shadow)}
+    .hero-photo{position:absolute;inset:0 0 0 34%;width:66%;height:100%;object-fit:cover;object-position:52% 30%;z-index:-2}
+    .hero-card:before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(251,244,236,.99) 0%,rgba(251,244,236,.96) 32%,rgba(251,244,236,.65) 48%,rgba(251,244,236,.03) 75%)}
+    .hero-content{padding:68px 0 42px 6.5%;width:min(58%,570px)}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;border:1px solid #e8cfc0;border-radius:99px;padding:7px 12px;color:#8d5b48;font-size:11px;font-weight:850;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,250,245,.62)}
+    .dot{width:7px;height:7px;background:#bd785f;border-radius:50%}
+    h1,h2,h3,p{margin-top:0}
+    h1{font-size:clamp(42px,5.4vw,70px);letter-spacing:-.055em;line-height:.99;margin:23px 0 12px;max-width:560px}
+    .script{font-family:"Segoe Script","Brush Script MT",cursive;font-size:clamp(30px,4vw,48px);font-weight:500;color:#a96f59;transform:rotate(-3deg);margin:0 0 22px}
+    .hero-copy{font-size:16px;color:#6d5448;max-width:390px;margin-bottom:25px}
+    .hero-cta{min-width:245px}
+    .trust-row{display:flex;flex-wrap:wrap;gap:17px;margin-top:27px;color:#795d4f;font-size:12px;font-weight:700}
+    .trust-row span{display:flex;align-items:center;gap:7px}
+    .trust-row b{font-size:16px;color:#a66c55}
+    .section{padding:36px 0}
+    .section-head{text-align:center;margin:0 auto 25px;max-width:680px}
+    .kicker{color:#a56c55;font-size:11px;font-weight:900;letter-spacing:.16em;text-transform:uppercase;margin-bottom:8px}
+    h2{font-size:clamp(27px,3.7vw,42px);line-height:1.1;letter-spacing:-.04em;margin-bottom:10px}
+    .section-head p{color:var(--muted);margin-bottom:0;font-size:15px}
+    .workout-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+    .workout{background:var(--paper);border:1px solid var(--line);border-radius:23px;overflow:hidden;box-shadow:0 7px 24px rgba(78,45,31,.045)}
+    .workout-art{height:205px;position:relative;overflow:hidden;background:linear-gradient(135deg,#ddbaa5,#8a5b47)}
+    .workout-art img{display:block;width:100%;height:100%;object-fit:contain;object-position:center center;filter:none;background:#f6ede5}
+    .workout-art:after{content:"";position:absolute;inset:40% 0 0;background:linear-gradient(transparent,rgba(42,24,17,.52))}
+    .free-tag,.duration{position:absolute;z-index:2;top:13px;border-radius:99px;padding:7px 11px;font-size:10px;letter-spacing:.07em;font-weight:900}
+    .free-tag{left:13px;color:#fff;background:rgba(72,43,31,.83)}
+    .duration{right:13px;color:#fff;background:rgba(72,43,31,.65);top:auto;bottom:13px;letter-spacing:0}
+    .workout-body{padding:19px}
+    .workout-title-row{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+    .workout h3{font-size:20px;letter-spacing:-.025em;margin-bottom:5px}
+    .workout p{color:var(--muted);font-size:13px;margin-bottom:17px}
+    .round-icon{flex:0 0 34px;height:34px;border-radius:50%;background:#f4e2d7;color:#8d5945;display:grid;place-items:center;font-size:17px}
+    .workout .btn{width:100%;padding:13px}
+    .premium{padding:20px 0 38px}
+    .premium-card{position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(220px,.72fr) minmax(0,.9fr);gap:22px;align-items:center;border-radius:28px;padding:34px;background:linear-gradient(135deg,#4a2b20,#754734);color:#fff5eb;box-shadow:var(--shadow)}
+    .premium-card:after{content:"";position:absolute;width:340px;height:340px;border:1px solid rgba(255,236,218,.12);border-radius:50%;left:42%;top:-160px;pointer-events:none}.premium-portrait{display:block;position:relative;z-index:1;width:100%;height:440px;object-fit:cover;object-position:center 18%;border-radius:20px;background:#795848;box-shadow:0 10px 28px rgba(28,12,7,.18)}
+    .premium-copy{position:relative;z-index:1}
+    .premium-label{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:12px;background:rgba(255,239,225,.13);border:1px solid rgba(255,239,225,.2);font-size:11px;font-weight:900;letter-spacing:.15em;margin-bottom:18px}
+    .premium h2{font-size:clamp(30px,4vw,43px);max-width:470px}
+    .premium-copy p{color:#e7cfc0;max-width:470px;margin-bottom:22px}
+    .price{font-size:33px;font-weight:900;letter-spacing:-.04em;margin:0 0 5px}
+    .price small{font-size:13px;font-weight:600;letter-spacing:0;color:#e7cfc0}
+    .premium-perks{display:grid;gap:13px;position:relative;z-index:1}
+    .perk{display:flex;align-items:flex-start;gap:11px;color:#f7e8dc;font-size:13px}
+    .check{display:grid;place-items:center;flex:0 0 22px;height:22px;border-radius:50%;background:#f1c6b1;color:#4d2d22;font-weight:900;font-size:12px}
+    .features{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+    .feature{padding:16px 10px;text-align:center;border:1px solid var(--line);border-radius:16px;background:rgba(255,250,245,.7)}
+    .feature-icon{width:36px;height:36px;border-radius:12px;background:#f2dfd3;color:#925b45;display:grid;place-items:center;margin:0 auto 7px;font-size:17px}
+    .feature h3{font-size:15px;margin-bottom:6px}
+    .feature p{font-size:12px;color:var(--muted);margin:0}
+    .how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+    .step{padding:22px;border-radius:20px;background:var(--paper);border:1px solid var(--line)}
+    .step-num{font-size:12px;color:#b7775d;font-weight:900;letter-spacing:.1em;margin-bottom:16px}
+    .step h3{font-size:17px;margin-bottom:7px}
+    .step p{font-size:13px;color:var(--muted);margin:0}
+    .quote{background:#f4e2d6;border-radius:24px;text-align:center;padding:34px 24px;margin:10px 0 40px}
+    .quote h2{font-size:clamp(25px,3vw,34px)}
+    .quote p{color:#795e50;margin-bottom:19px}
+    .faq{max-width:780px;margin:auto}
+    details{border-bottom:1px solid var(--line);padding:17px 3px}
+    summary{cursor:pointer;font-weight:800;list-style:none;display:flex;justify-content:space-between;gap:15px}
+    summary:after{content:"+";color:#a96e56;font-size:22px;line-height:1}
+    details[open] summary:after{content:"−"}
+    details p{color:var(--muted);font-size:14px;margin:12px 0 2px;max-width:680px}
+    footer{border-top:1px solid var(--line);padding:25px 0 35px;color:var(--muted);font-size:12px}
+    .footer-inner{display:flex;justify-content:space-between;gap:18px;align-items:center}
+    .footer-links{display:flex;gap:16px;flex-wrap:wrap}
+    .footer-social{display:flex;align-items:center;gap:10px}
+    .footer-social a{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:#f2e0d5;border:1px solid var(--line);color:#70422f;transition:transform .18s ease,background .18s ease}
+    .footer-social a:hover{transform:translateY(-2px);background:#ead1c2}
+    .footer-social svg{width:21px;height:21px;display:block}
+    .footer-social a:focus-visible{outline:2px solid #70422f;outline-offset:3px}
+    .mobile-menu{display:none;padding:0 0 15px}
+    .mobile-menu a{display:block;padding:11px 3px;color:#765e52;font-weight:700;font-size:14px}
+    .modal-backdrop{position:fixed;inset:0;z-index:50;background:rgba(35,21,15,.55);display:none;align-items:flex-end;justify-content:center;padding:16px}
+    .modal-backdrop.open{display:flex}
+    .modal{width:min(520px,100%);max-height:88dvh;overflow:auto;background:var(--paper);border-radius:26px;padding:27px;box-shadow:0 24px 80px rgba(0,0,0,.2);animation:rise .2s ease-out}
+    @keyframes rise{from{transform:translateY(15px);opacity:.5}to{transform:translateY(0);opacity:1}}
+    .modal-top{display:flex;align-items:flex-start;justify-content:space-between;gap:14px}
+    .modal h2{font-size:28px;margin-bottom:8px}
+    .modal p{color:var(--muted);font-size:14px}
+    .close{border:0;background:#f2e1d6;border-radius:50%;width:36px;height:36px;font-size:21px;color:var(--brown);flex:0 0 auto}
+    .modal-list{padding:0;list-style:none;display:grid;gap:10px;margin:18px 0 23px}
+    .modal-list li{display:flex;gap:10px;align-items:flex-start;font-size:14px}
+    .modal .btn{width:100%;margin-top:8px}
+    .form-field{display:grid;gap:7px;margin:15px 0}
+    .form-field label{font-size:12px;font-weight:800;color:#795e50}
+    .form-field input{width:100%;padding:13px 14px;border:1px solid var(--line);border-radius:13px;background:#fffdf9;color:var(--ink);font:inherit}
+    .notice{font-size:11px!important;color:#9b8174!important;margin-top:12px!important}
+    .toast{position:fixed;left:50%;bottom:20px;transform:translate(-50%,20px);z-index:70;opacity:0;pointer-events:none;background:#3f291f;color:#fff4eb;padding:12px 18px;border-radius:99px;font-size:13px;box-shadow:var(--shadow);transition:.2s;max-width:calc(100% - 30px);text-align:center}
+    .toast.show{opacity:1;transform:translate(-50%,0)}
+    @media(min-width:700px){.modal-backdrop{align-items:center}.modal{padding:32px}}
+    @media(max-width:850px){.navlinks{gap:14px}.hero-card{min-height:530px}.hero-content{padding-top:55px;width:62%}.hero-photo{left:31%;width:69%;object-position:56% center}.premium-card{grid-template-columns:minmax(0,1fr) minmax(190px,.75fr);padding:26px;gap:18px}.premium-portrait{grid-column:2;grid-row:1 / span 2;height:390px}.premium-copy{grid-column:1;grid-row:1}.premium-perks{grid-column:1;grid-row:2}.features{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:640px){
+      .wrap{width:min(100% - 28px,520px)}
+      .nav{min-height:66px}.brand{font-size:15px}.brand-mark{width:35px;height:35px}.navlinks,.nav-actions .btn-outline{display:none}.menu-btn{display:block}
+      .mobile-menu.open{display:block}
+      .hero{padding:15px 0 12px}
+      .hero-card{min-height:0;border-radius:25px;display:flex;flex-direction:column;background:#f4e0d1}
+      .hero-photo{position:relative;inset:auto;width:100%;height:330px;object-position:center 28%;order:2;z-index:0}
+      .hero-card:before{inset:0 0 28%;background:linear-gradient(180deg,#fbf0e5 0%,rgba(251,240,229,.97) 60%,rgba(251,240,229,0) 100%);z-index:1}
+      .hero-content{position:relative;z-index:2;width:100%;padding:28px 23px 0}
+      h1{font-size:clamp(42px,12vw,58px);margin:17px 0 8px}
+      .script{font-size:34px;margin-bottom:14px}
+      .hero-copy{font-size:14px;max-width:340px;margin-bottom:18px}
+      .hero-cta{width:100%;min-width:0}
+      .trust-row{gap:10px 15px;margin-top:17px;font-size:11px}
+      .section{padding:27px 0}.section-head{margin-bottom:18px}.section-head p{font-size:13px}
+      .workout-grid{grid-template-columns:1fr;gap:14px}
+      .workout-art{aspect-ratio:2/3;height:auto;max-height:none}.workout-body{padding:16px}.workout h3{font-size:19px}
+      .premium{padding:10px 0 24px}
+      .premium-card{grid-template-columns:1fr;padding:18px;border-radius:24px;gap:18px;background:linear-gradient(135deg,#4a2b20,#754734)}.premium-portrait{grid-column:1;grid-row:1;height:420px;object-position:center 18%;border-radius:18px}.premium-copy{grid-column:1;grid-row:2}.premium-perks{grid-column:1;grid-row:3}
+      .premium h2{font-size:31px}.price{font-size:30px}
+      .premium-card .btn{width:100%}.premium-perks{grid-template-columns:1fr 1fr;gap:13px}
+      .perk{font-size:12px;gap:8px}.check{flex-basis:20px;height:20px}
+      .features{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.feature{padding:13px 8px;border-radius:14px}.feature-icon{width:32px;height:32px;border-radius:10px;font-size:15px;margin-bottom:6px}.feature h3{font-size:13px;line-height:1.25;margin-bottom:3px}.feature p{font-size:10px;line-height:1.3}
+      .how-grid{grid-template-columns:1fr;gap:10px}.step{padding:18px}.step-num{margin-bottom:9px}
+      .quote{padding:27px 18px;margin-bottom:28px}.quote .btn{width:100%}
+      .footer-inner{align-items:flex-start;flex-direction:column}.footer-links{gap:13px}.footer-social{margin:2px 0}
+    }
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}}
+  
+    /* Minimal benefit cards inspired by the approved reference */
+    #about .features{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    #about .feature{min-width:0;display:flex;flex-direction:column;align-items:flex-start;text-align:left;padding:22px 20px;border:1px solid #ead7ca;border-radius:22px;background:rgba(255,250,246,.62);box-shadow:none;transition:border-color .2s ease,background .2s ease}
+    #about .feature:nth-child(2n){background:rgba(255,250,246,.62);border-color:#ead7ca;color:inherit}
+    #about .feature-icon{width:58px;height:58px;display:grid;place-items:center;margin:0 0 16px;border-radius:50%;background:#f2ded2;color:#80513d;font-size:0}
+    #about .feature-icon svg{width:27px;height:27px;display:block;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+    #about .feature h3{font-size:clamp(16px,1.6vw,21px);line-height:1.25;margin:0 0 8px;letter-spacing:-.02em}
+    #about .feature p,#about .feature:nth-child(2n) p{font-size:clamp(12px,1.15vw,16px);line-height:1.5;color:var(--muted);margin:0}
+    @media(hover:hover){#about .feature:hover{border-color:#d9b9a6;background:#fffaf6}}
+    @media(max-width:850px){#about .features{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;align-items:stretch}#about .feature{box-sizing:border-box;min-height:0;padding:14px 12px;border-radius:18px;justify-content:flex-start}#about .feature-icon{width:42px;height:42px;margin:0 0 10px;flex:0 0 auto}#about .feature-icon svg{width:21px;height:21px}#about .feature h3{font-size:14px;line-height:1.25;margin:0 0 5px;letter-spacing:-.025em;overflow-wrap:normal}#about .feature p,#about .feature:nth-child(2n) p{font-size:11.5px;line-height:1.35;margin:0;overflow-wrap:normal}}
+
+
+</style>
+</head>
+<body>
+  <header class="header">
+    <div class="wrap nav">
+      <a class="brand" href="#home" aria-label="Mia Hart — на главную">
+        <span class="brand-mark">MH</span><span>MIA HART<small>AI FITNESS TRAINER</small></span>
+      </a>
+      <nav class="navlinks" aria-label="Главная навигация">
+        <a href="#workouts">Тренировки</a><a href="#premium">Premium</a><a href="#about">О Mia</a><a href="#faq">Вопросы</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="btn btn-outline" data-modal="login">Войти</button>
+        <button class="menu-btn" id="menuBtn" aria-label="Открыть меню" aria-expanded="false">☰</button>
+      </div>
+    </div>
+    <nav class="wrap mobile-menu" id="mobileMenu" aria-label="Мобильная навигация">
+      <a href="#workouts">Тренировки</a><a href="#premium">Premium</a><a href="#about">О Mia</a><a href="#faq">Вопросы</a>
+      <a href="#" data-modal="login">Войти в аккаунт</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero wrap" id="home">
+      <div class="hero-card">
+        <img class="hero-photo" src="assets/mia-hart.jpg" alt="Mia Hart — виртуальный фитнес-тренер в светлой студии" fetchpriority="high">
+        <div class="hero-content">
+          <span class="eyebrow"><span class="dot"></span> Твой AI-фитнес-тренер</span>
+          <h1>Сильнее.<br>Свободнее.<br>Увереннее.</h1>
+          <p class="script">Mia Hart ♡</p>
+          <p class="hero-copy">Тренировки, которые вписываются в твою жизнь. Начни дома в удобном темпе — Mia поможет не потерять мотивацию.</p>
+          <a class="btn btn-primary hero-cta" href="#workouts">Начать бесплатно <span aria-hidden="true">→</span></a>
+          <div class="trust-row"><span><b>♡</b> В своём темпе</span><span><b>✦</b> Дома и в зале</span><span><b>✓</b> С поддержкой Mia</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section wrap" id="workouts">
+      <div class="section-head">
+        <div class="kicker">Твой первый шаг</div>
+        <h2>Попробуй 2 бесплатные тренировки</h2>
+        <p>Познакомься с Mia и найди тренировку, которая подходит именно тебе.</p>
+      </div>
+      <div class="workout-grid">
+        <article class="workout">
+          <div class="workout-art">
+            <img src="assets/stretch.jpg" alt="Mia Hart выполняет растяжку на коврике" loading="lazy">
+            <span class="free-tag">БЕСПЛАТНО</span><span class="duration">◷ 20 минут</span>
+          </div>
+          <div class="workout-body">
+            <div class="workout-title-row"><div><h3>Мягкая растяжка</h3><p>Гибкость, лёгкость и расслабление</p></div><span class="round-icon">↗</span></div>
+            <button class="btn btn-primary" data-workout="stretch">Начать тренировку <span>→</span></button>
+          </div>
+        </article>
+        <article class="workout">
+          <div class="workout-art">
+            <img src="assets/glutes.jpg" alt="Mia Hart выполняет упражнение для ягодиц и ног с гантелями" loading="lazy">
+            <span class="free-tag">БЕСПЛАТНО</span><span class="duration">◷ 20 минут</span>
+          </div>
+          <div class="workout-body">
+            <div class="workout-title-row"><div><h3>Ягодицы и ноги</h3><p>Сила и устойчивость · Инвентарь: гантели и резинка</p></div><span class="round-icon">✦</span></div>
+            <button class="btn btn-primary" data-workout="glutes">Начать тренировку <span>→</span></button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="premium wrap" id="premium">
+      <div class="premium-card">
+        <div class="premium-copy">
+          <div class="premium-label">♛ MIA HART PREMIUM</div>
+          <h2>Твой план. Твой ритм. Больше возможностей.</h2>
+          <p>Открой все тренировки, персональные планы и AI-поддержку Mia, чтобы двигаться к своим целям постепенно.</p>
+          <div class="price">1 499 ₽ <small>/ месяц</small></div>
+          <p style="font-size:12px;margin:4px 0 19px">Доступ ко всем премиум-программам</p>
+          <button class="btn btn-primary" data-modal="premium">Выбрать Premium <span>→</span></button>
+        </div>
+        <img class="premium-portrait" src="assets/mia-hart-premium.jpg" alt="Mia Hart в шоколадно-коричневом спортивном костюме с гантелями" loading="lazy">
+        <div class="premium-perks">
+          <div class="perk"><span class="check">✓</span><span>Все тренировки без ограничений</span></div>
+          <div class="perk"><span class="check">✓</span><span>Новые программы каждую неделю</span></div>
+          <div class="perk"><span class="check">✓</span><span>Планы под твои цели и уровень</span></div>
+          <div class="perk"><span class="check">✓</span><span>AI-помощник Mia</span></div>
+          <div class="perk"><span class="check">✓</span><span>История занятий и прогресс</span></div>
+          <div class="perk"><span class="check">✓</span><span>Доступ со всех устройств</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section wrap" id="about">
+      <div class="section-head"><div class="kicker">Больше, чем тренировки</div><h2>Почему выбирают Mia?</h2><p>Понятная структура, поддержка и свобода выбирать свой темп.</p></div>
+      <div class="features">
+        <article class="feature"><div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 9v6M6 7v10M8 12h8M18 7v10M21 9v6"/></svg></div><h3>Удобный формат</h3><p>Занимайся дома или в зале</p></article>
+        <article class="feature"><div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="1.8"/><path d="M9 8h1M14 8h1M9 12h1M14 12h1M9 16h1M14 16h1"/></svg></div><h3>Понятный план</h3><p>Выбирай занятия по уровню</p></article>
+        <article class="feature"><div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.5 8.8c0 4.4-8.5 10-8.5 10s-8.5-5.6-8.5-10A4.5 4.5 0 0 1 12 6.5a4.5 4.5 0 0 1 8.5 2.3Z"/></svg></div><h3>Поддержка</h3><p>Мягкая мотивация без давления</p></article>
+        <article class="feature"><div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.8" y="3.5" width="10.2" height="17" rx="1.7"/><path d="M6.6 17.8h2.6"/><rect x="15.7" y="7" width="5.5" height="11" rx="1.2"/><path d="M17.5 15.8h1.9"/></svg></div><h3>Всегда рядом</h3><p>Удобно на телефоне и планшете</p></article>
+      </div>
+    </section>
+
+    <section class="section wrap">
+      <div class="section-head"><div class="kicker">Начать просто</div><h2>Три шага к своей привычке</h2></div>
+      <div class="how-grid">
+        <article class="step"><div class="step-num">ШАГ 01</div><h3>Выбери тренировку</h3><p>Начни с растяжки или занятия на ягодицы — обе тренировки бесплатные.</p></article>
+        <article class="step"><div class="step-num">ШАГ 02</div><h3>Задай комфортный темп</h3><p>Подготовь место, воду и двигайся без спешки, ориентируясь на самочувствие.</p></article>
+        <article class="step"><div class="step-num">ШАГ 03</div><h3>Продолжай с Mia</h3><p>Если захочешь больше программ, открой доступ ко всем тренировкам с Premium.</p></article>
+      </div>
+    </section>
+
+    <section class="wrap">
+      <div class="quote"><div class="kicker">Твой путь начинается здесь</div><h2>Маленький шаг — уже достижение.</h2><p>Две бесплатные тренировки уже ждут тебя.</p><a href="#workouts" class="btn btn-dark">Начать бесплатно <span>→</span></a></div>
+    </section>
+
+    <section class="section wrap" id="faq">
+      <div class="section-head"><div class="kicker">FAQ</div><h2>Частые вопросы</h2></div>
+      <div class="faq">
+        <details><summary>Какие тренировки бесплатные?</summary><p>Можно бесплатно попробовать мягкую растяжку на 20 минут и тренировку «Ягодицы и ноги» на 25 минут. Другие программы относятся к Premium.</p></details>
+        <details><summary>Сколько стоит Premium?</summary><p>Подписка стоит 1 499 ₽ в месяц. Перед подключением стоит показать пользователю условия оплаты, дату следующего списания и способ отмены.</p></details>
+        <details><summary>Нужно ли оборудование?</summary><p>Для старта выбери удобную одежду и свободное пространство. Для некоторых программ могут пригодиться коврик или фитнес-резинка — требования будут указаны в описании занятия.</p></details>
+        <details><summary>Mia — настоящий тренер?</summary><p>Mia Hart — AI-персонаж фитнес-проекта. Подсказки помогают ориентироваться в тренировках, но не заменяют индивидуальную консультацию квалифицированного специалиста.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <a class="brand" href="#home"><span class="brand-mark">MH</span><span>MIA HART<small>AI FITNESS TRAINER</small></span></a>
+      <div>© <span id="year"></span> Mia Hart. Двигайся в своём ритме.</div>
+      <div class="footer-social" aria-label="Социальные сети">
+        <a href="https://www.tiktok.com/@yukitravels71?_r=1&_t=ZS-9Ad2V5AeNxE" target="_blank" rel="noopener noreferrer" aria-label="Mia Hart в TikTok" title="TikTok">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14.2 3v11.15a4.15 4.15 0 1 1-3.2-4.04" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M14.2 3c.55 3.1 2.35 4.75 5.1 5.05" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+        </a>
+        <a href="https://www.instagram.com/_dr.ulvia_?srtk=bmF5dWY3bHQwdTd3&amp;utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="Mia Hart в Instagram" title="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3.2" y="3.2" width="17.6" height="17.6" rx="5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/><circle cx="17.6" cy="6.7" r="1.15" fill="currentColor"/></svg>
+        </a>
+      </div>
+      <div class="footer-links"><a href="#faq">Помощь</a><a href="#" data-modal="terms">Условия</a><a href="#" data-modal="privacy">Конфиденциальность</a></div>
+    </div>
+  </footer>
+
+  <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal">
+      <div class="modal-top"><div><div class="kicker" id="modalKicker">MIA HART</div><h2 id="modalTitle">Начнём?</h2></div><button class="close" id="closeModal" aria-label="Закрыть">×</button></div>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const $ = (s, root=document) => root.querySelector(s);
+    const $$ = (s, root=document) => [...root.querySelectorAll(s)];
+    const backdrop = $('#modalBackdrop');
+    const content = $('#modalContent');
+    const title = $('#modalTitle');
+    const kicker = $('#modalKicker');
+    const menuBtn = $('#menuBtn');
+    const mobileMenu = $('#mobileMenu');
+    $('#year').textContent = new Date().getFullYear();
+
+    const workoutInfo = {
+      stretch: {
+        title:'Мягкая растяжка', duration:'20 минут',
+        intro:'Спокойная тренировка, чтобы мягко размяться и уделить время подвижности.',
+        steps:['Подготовь нескользящий коврик и немного свободного места.','Двигайся медленно, не пружинь и не тянись через боль.','Остановись, если почувствуешь боль, головокружение или необычный дискомфорт.']
+      },
+      glutes: {
+        title:'Ягодицы и ноги', duration:'20 минут',
+        intro:'Тренировка для укрепления мышц нижней части тела с вниманием к технике и контролю движений.',
+        steps:['Подготовь устойчивое пространство и при желании фитнес-резинку.','Начинай с комфортной амплитуды и сохраняй ровное дыхание.','Если упражнение вызывает боль или дискомфорт, прекрати его и отдохни.']
+      }
+    };
+
+    function openModal(kind) {
+      mobileMenu.classList.remove('open'); menuBtn.setAttribute('aria-expanded','false');
+      if (workoutInfo[kind]) {
+        const w = workoutInfo[kind];
+        kicker.textContent = 'БЕСПЛАТНАЯ ТРЕНИРОВКА · ' + w.duration.toUpperCase();
+        title.textContent = w.title;
+        content.innerHTML = `<p>${w.intro}</p><ul class="modal-list">${w.steps.map(x=>`<li><span class="check">✓</span><span>${x}</span></li>`).join('')}</ul><button class="btn btn-primary" id="beginWorkout">Начать занятие <span>→</span></button><p class="notice">Демонстрационный режим: видеоурок и таймер можно подключить на следующем этапе разработки.</p>`;
+        $('#beginWorkout').addEventListener('click', () => {
+          closeModal();
+          showToast('Тренировка выбрана! Здесь можно подключить видео и таймер занятия.');
+        });
+      } else if (kind === 'premium') {
+        kicker.textContent = 'MIA HART PREMIUM'; title.textContent = 'Больше возможностей с Mia';
+        content.innerHTML = `<p>Полный доступ к программам и персональным планам за <strong>1 499 ₽ в месяц</strong>.</p><ul class="modal-list"><li><span class="check">✓</span><span>Все премиум-тренировки</span></li><li><span class="check">✓</span><span>Новые программы каждую неделю</span></li><li><span class="check">✓</span><span>AI-поддержка и история занятий</span></li></ul><button class="btn btn-primary" id="checkoutBtn">Продолжить <span>→</span></button><p class="notice">Оплата пока не подключена. Для реального запуска потребуется платёжный провайдер, страница согласия и условия отмены подписки.</p>`;
+        $('#checkoutBtn').addEventListener('click', () => showToast('Демо-сайт: подключи платёжную систему, чтобы принимать оплату.'));
+      } else if (kind === 'login') {
+        kicker.textContent = 'С РАДОСТЬЮ СНОВА ВИДЕТЬ ТЕБЯ'; title.textContent = 'Войти в аккаунт';
+        content.innerHTML = `<form id="loginForm"><div class="form-field"><label for="email">Электронная почта</label><input id="email" name="email" type="email" placeholder="you@example.com" required autocomplete="email"></div><div class="form-field"><label for="password">Пароль</label><input id="password" name="password" type="password" placeholder="Твой пароль" required autocomplete="current-password" minlength="6"></div><button class="btn btn-primary" type="submit">Войти <span>→</span></button></form><p class="notice">Форма демонстрационная: авторизация и хранение аккаунтов ещё не подключены.</p>`;
+        $('#loginForm').addEventListener('submit', e => {e.preventDefault(); showToast('Для входа нужно подключить сервер авторизации.');});
+      } else {
+        kicker.textContent = 'MIA HART'; title.textContent = kind === 'terms' ? 'Условия использования' : 'Конфиденциальность';
+        content.innerHTML = `<p>${kind === 'terms' ? 'Перед публичным запуском добавь юридические условия использования, правила подписки, возвратов и отмены платежей.' : 'Перед публичным запуском добавь политику конфиденциальности и опиши, какие данные собираются, зачем и как пользователь может их удалить.'}</p><button class="btn btn-dark" id="okBtn">Понятно</button>`;
+        $('#okBtn').addEventListener('click', closeModal);
+      }
+      backdrop.classList.add('open'); document.body.style.overflow='hidden'; $('#closeModal').focus();
+    }
+    function closeModal(){backdrop.classList.remove('open');document.body.style.overflow='';}
+    let toastTimer;
+    function showToast(message){const t=$('#toast');t.textContent=message;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),3200);}
+    $$('[data-modal]').forEach(el=>el.addEventListener('click',e=>{e.preventDefault();openModal(el.dataset.modal);}));
+    $$('[data-workout]').forEach(el=>el.addEventListener('click',()=>openModal(el.dataset.workout)));
+    $('#closeModal').addEventListener('click',closeModal);
+    backdrop.addEventListener('click',e=>{if(e.target===backdrop)closeModal();});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+    menuBtn.addEventListener('click',()=>{const open=mobileMenu.classList.toggle('open');menuBtn.setAttribute('aria-expanded',String(open));menuBtn.textContent=open?'×':'☰';});
+    $$('#mobileMenu a').forEach(a=>a.addEventListener('click',()=>{mobileMenu.classList.remove('open');menuBtn.setAttribute('aria-expanded','false');menuBtn.textContent='☰';}));
+  </script>
+</body>
+</html>
